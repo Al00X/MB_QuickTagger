@@ -30,7 +30,7 @@ namespace MusicBeePlugin
             about.Type = PluginType.Storage;
             about.VersionMajor = 1;  // your plugin version
             about.VersionMinor = 0;
-            about.Revision = 0;
+            about.Revision = 1;
             about.MinInterfaceVersion = MinInterfaceVersion;
             about.MinApiRevision = MinApiRevision;
             about.ReceiveNotifications = ReceiveNotificationFlags.StartupOnly | ReceiveNotificationFlags.PlayerEvents | ReceiveNotificationFlags.DataStreamEvents | ReceiveNotificationFlags.DownloadEvents | ReceiveNotificationFlags.TagEvents;
@@ -70,7 +70,7 @@ namespace MusicBeePlugin
                 var tagName = GetTagName(tag.Key);
                 foreach (var tagValue in tagSplit)
                 {
-                    if (tagValue == "")
+                    if (tagValue.Trim() == "")
                         continue;
 
                     mbApiInterface.MB_RegisterCommand($"Quick Tagger: Set {tagName} to: {tagValue.Trim()}", (sender, e) => QuickTagger.SetTag_handle(tag.Key, tagValue));
